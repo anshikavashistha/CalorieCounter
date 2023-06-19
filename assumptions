@@ -1,0 +1,14 @@
+ Here are some assumptions made for the REST API:
+
+1. Calorie API Provider: The API assumes the availability of an external calories API provider, such as Nutritionix, to fetch calorie information for the entered meal if the number of calories is not provided by the user. The specific implementation and integration details with the provider are not provided in the instructions.
+
+2. User Roles and Permissions: The API assumes the existence of three roles with different permission levels: regular user, user manager, and admin. The specific permissions and restrictions associated with each role are not explicitly defined in the instructions. Further customization and refinement of the roles and their corresponding access levels may be required based on specific business requirements.
+
+3. JSON Web Tokens (JWT) for Authentication: The API uses JSON Web Tokens for user authentication and authorization. The implementation assumes the use of JWT to generate and validate tokens for securing API calls. The specific token format, expiration times, and token handling mechanisms are not detailed in the instructions.
+
+4. Calories Per Day Calculation: The API assumes that the expected number of calories per day is a fixed value provided by the user during registration or user settings update. There is no provision for dynamic calculation or adjustment of the expected calories based on individual needs or factors like age, weight, and activity level.
+
+5. SQLite Database: The API uses SQLite as the database system for storing user and calorie entry data. This assumes that SQLite is suitable for the project's requirements. If there is a need for scalability, high concurrency, or specific database features, a different database management system (DBMS) may need to be considered.
+
+6. Pagination and Filtering: The API assumes the need for pagination and filtering capabilities for list endpoints. However, the specific details and requirements for pagination (e.g., page size, page number) and filtering (e.g., filtering criteria, supported filter operators) are not explicitly defined in the instructions. Further customization and refinement may be needed based on specific use cases.
+
