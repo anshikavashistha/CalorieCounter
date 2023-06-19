@@ -1,47 +1,87 @@
-## ![Dive logo](https://user-images.githubusercontent.com/424487/219708981-f0416526-ba48-4b01-b5b3-c0eb73362718.png) Dive 
-<!-- ![Company Logo](https://example.org) -->
-
-| Octernship info  | Timelines and Stipend |
-| ------------- | ------------- |
-| Assignment Deadline  | 19th June 2023  |
-| Octernship Duration  | 3rd July 2023 - 3rd October 2023 |
-| Monthly Stipend  | $500 USD  |
-
-## Assignment
 
 
-# Write a REST API for the input of calories in Python
+# Calorie Counter REST API
 
-### Task Instructions
-- API Users must be able to create an account and log in.
-- All API calls must be authenticated.
-- Implement at least three roles with different permission levels: a regular user would only be able to CRUD on their owned records, a user manager would be able to CRUD only users, and an admin would be able to CRUD all records and users.
-- Each entry has a date, time, text, and number of calories.
-- If the number of calories is not provided, the API should connect to a Calories API provider (for example, https://www.nutritionix.com) and try to get the number of calories for the entered meal.
-- User setting – Expected number of calories per day.
-- Each entry should have an extra boolean field set to true if the total for that day is less than the expected number of calories per day, otherwise should be false.
-- The API must be able to return data in the JSON format.
-- The API should provide filter capabilities for all endpoints that return a list of elements, as well should be able to support pagination.
-- Write unit and e2e tests.
-- Use any *Python* web framework
-- Use *SQLite* as the database
+This is a REST API for tracking calories. It allows users to create an account, log in, and manage their calorie entries. The API supports authentication, implements three roles with different permission levels, and connects to a calories API provider to fetch calorie information if not provided by the user. It also includes user settings for the expected number of calories per day, and calculates a boolean field indicating if the total for the day is below the expected calories. The API returns data in JSON format and provides filtering capabilities and pagination for list endpoints.
 
-### Task Expectations
-- API Design Best Practices
-- Documentation of any assumptions or choices made and why
-- Links as citation to any article / code referred to or used
-- Unit tests covering the core calories logic
-- Appropriate exception handling and error messages
-- Code Quality - remove any unnecessary code, avoid large functions
-- Good commit history - we won’t accept a repo with a single giant commit 🙅‍♀️
+## Features
 
-### Task submission
-Using the [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow#following-github-flow) for assignment submission
-1. Creating a new branch 
-2. Raising a Pull Request for submission
-3. Using GitHub Discussions to ask any relevant questions regarding the project
-4. Final submission Checklist:
-- [ ] SUBMISSION.md in the repository / PR, with:
-  - [ ] commands to set up the repo (dependencies etc.)
-  - [ ] commands to run the test suite
-  - [ ] commands to run the API server
+- User registration: Users can create an account by providing a username, password, role, and expected number of calories per day.
+- User authentication: All API calls are authenticated using JSON Web Tokens (JWT).
+- Role-based permissions: Three roles are implemented - regular user, user manager, and admin - each with different permission levels for CRUD operations on records and users.
+- Calorie entry management: Users can create, read, update, and delete their calorie entries. The entries contain a date, time, text description, and number of calories.
+- External API integration: If the number of calories is not provided by the user, the API connects to a calories API provider (e.g., Nutritionix) to fetch the calorie information for the entered meal.
+- Daily calories tracking: Each entry includes an extra boolean field indicating if the total for the day is less than the expected number of calories per day.
+- JSON format: Data is returned in JSON format to enable easy consumption by clients.
+- Filtering and pagination: List endpoints support filtering capabilities and pagination to efficiently retrieve data.
+
+## Tech Stack
+
+- Python: Programming language used for API development.
+- Flask: Python web framework for building the REST API.
+- SQLite: Lightweight database used for storing user and calorie entry data.
+- SQLAlchemy: Object-Relational Mapping (ORM) library for interacting with the database.
+- Flask-Bcrypt: Library for password hashing and verification.
+- JWT: JSON Web Tokens for user authentication and authorization.
+- Requests: Library for making HTTP requests to external APIs.
+- Pytest: Testing framework for unit and end-to-end (E2E) tests.
+
+## Installation and Setup
+
+1. Clone the repository:
+
+```
+git clone https://github.com/CalorieCounter/calorie-tracker-api.git
+cd calorie-tracker-api
+```
+
+2. Create a virtual environment and activate it:
+
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. Install the required dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+4. Run the database migrations:
+
+```
+flask db upgrade
+```
+
+5. Start the development server:
+
+```
+flask run
+```
+
+The API will be accessible at `http://localhost:5000`.
+
+## Testing
+
+To run the unit tests and end-to-end (E2E) tests, use the following command:
+
+```
+pytest
+```
+
+The tests will be executed, and the results will be displayed in the terminal.
+
+## API Documentation
+
+The API documentation and endpoint details can be found in the [API Documentation](api-docs.md) file.
+
+## Deployment
+
+To deploy the API to a production environment, additional steps are required. Some considerations include:
+
+- Securing sensitive information (e.g., secret keys, database credentials).
+- Configuring a production-grade web server (e.g., Nginx) and deploying the API using a WSGI server (e.g., Gunicorn).
+- Setting up a production database (e.g., PostgreSQL) for storing user and calorie entry data.
+- Enabling HTTPS for secure communication.
+- Scaling the API to
